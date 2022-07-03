@@ -1,29 +1,20 @@
 import React from 'react';
 import './App.css';
+import {Header} from "./components/Header";
+import {Navbar} from "./components/Navbar";
+import {Profile} from "./components/Profile";
 
 
 function App() {
 
- return  (
-     <div className="App">
-      <ul>
-       <li>css</li>
-       <li>html</li>
-       <li>react</li>
-       <li>JS</li>
+    return (
+        <div className="app-wrapper">
+            <Header/>
+            <Navbar/>
+            <Profile/>
+        </div>
 
-
-      </ul>
-
-
-
-     </div>
-
-
-
- )
-
-
+    )
 
 
 }
