@@ -10,20 +10,5 @@ width: 1800px;
 }
 
 
-.header {
-    grid-area: h;
-    background-color: silver;
-}
 
-.nav {
-    grid-area: n;
-    background-color: darkgoldenrod;
-}
 
-.content {
-    grid-area: c;
-    background-color: gold;
-}
-.header img {
-    width: 50px
-}
