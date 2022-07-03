@@ -12,7 +12,8 @@ return (
         </div>
         <div className={c.posts}>
 
-     <Post />
+     <Post message={"Hi"}/>
+     <Post message={"Hello"}/>
 
         </div>
     </div>
