@@ -8,7 +8,7 @@ export const ProfileInfo = () => {
         <div>
             <div>
                 <img src="https://exaline.ru/storage/app/media/bulgaria.jpg"/>
-            </div >
+            </div>
             <div className={c.DescriptionBlock}>ava + description</div>
 
         </div>
