@@ -1,15 +1,17 @@
 import c from "./MyPosts.module.css";
-import React from "react";
+import React, {ChangeEvent} from "react";
 import {Post} from "./Post/Post";
 import {FinishStateType, PostsMassiveType, ProfilePageType} from "../../../Redux/State";
 import {ProfileStateType} from "../Profile";
 
 
 type MyPostsStateType = {
-    state:Array<PostsMassiveType>
-    AddPost:(PostMessage:string)=>void
+    state: Array<PostsMassiveType>
+    AddPost: (PostMessage: string) => void
+    NewPostText: string
+    UpdateNewPostChange: (NewText: string) => void
 }
-export const MyPosts = (props:MyPostsStateType) => {
+export const MyPosts = (props: MyPostsStateType) => {
 
     const PostsMap = props.state.map((el) => {
         return (
@@ -18,8 +20,12 @@ export const MyPosts = (props:MyPostsStateType) => {
 
     })
     const ReactCreateRef = React.createRef<HTMLTextAreaElement>()
-    const AddPost = ()=> {
-        if (ReactCreateRef.current) {props.AddPost(ReactCreateRef.current.value)}
+    const AddPost = () => {
+        props.AddPost(props.NewPostText)
+
+    }
+    const OnChangePost = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        props.UpdateNewPostChange(e.currentTarget.value)
     }
     return (
 
@@ -27,7 +33,7 @@ export const MyPosts = (props:MyPostsStateType) => {
             <h3>My posts</h3>
             <div>
                 <div>
-                    <textarea ref={ReactCreateRef}></textarea>
+                    <textarea onChange={OnChangePost} value={props.NewPostText}/>
                 </div>
                 <div>
                     <button onClick={AddPost}>Add post</button>

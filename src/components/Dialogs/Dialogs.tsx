@@ -6,9 +6,9 @@ import {Message} from "./Message/Message";
 import {FinishStateType, MessagePageType} from "../../Redux/State";
 
 type DialogsStateType = {
-    state:MessagePageType
+    state: MessagePageType
 }
-export const Dialogs = (props:DialogsStateType) => {
+export const Dialogs = (props: DialogsStateType) => {
 
 
     const Dialogelement = props.state.DialogMassive.map((el) => {

@@ -1,9 +1,20 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import './index.css';
+import App from './App';
 import * as serviceWorker from './serviceWorker';
-import {state} from "./Redux/State";
+import {AddPost, AppStateType, state, UpdateNewPostChange} from "./Redux/State";
+import {BrowserRouter} from "react-router-dom";
 
-import {rerenderReactDom} from "./Render";
+
+export let rerenderReactDom = (state: AppStateType) => {
+    ReactDOM.render(
+        <BrowserRouter>
+            <App state={state} AddPost={AddPost} UpdateNewPostChange={UpdateNewPostChange}/>
+        </BrowserRouter>
+        , document.getElementById('root'));
+}
+
 
 rerenderReactDom(state)
 

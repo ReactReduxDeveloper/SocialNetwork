@@ -2,7 +2,6 @@ import React from "react";
 import c from './../Dialogs.module.css'
 
 
-
 export type DialogItemType = {
     name: string
     id: number

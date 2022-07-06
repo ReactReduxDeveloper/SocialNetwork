@@ -18,6 +18,7 @@ export type DialogMassiveType = {
 }
 export type ProfilePageType = {
     PostsMassive: Array<PostsMassiveType>
+    NewPostText: string
 }
 export type MessagePageType = {
     MessageMassive: Array<MessageMassiveType>
@@ -28,10 +29,12 @@ export type AppStateType = {
     ProfilePage: ProfilePageType
     MessagePage: MessagePageType
     Sidebar: sidebar
+
 }
 export type FinishStateType = {
     state: AppStateType
     AddPost: (PostMessage: string) => void
+
 }
 export type AddPostType = {
     AddPost: (PostMessage: string) => void
@@ -43,7 +46,8 @@ export const state: AppStateType = {
             {id: 2, message: "Hello", likesCount: "10"},
             {id: 3, message: "Privet", likesCount: "2"},
             {id: 4, message: "Hola", likesCount: "4"},
-        ]
+        ],
+        NewPostText: "It-Kam"
     },
     MessagePage: {
         MessageMassive: [
@@ -91,5 +95,12 @@ export const AddPost = (PostMessage: string) => {
     }
 
     state.ProfilePage.PostsMassive.push(NewPost)
+    state.ProfilePage.NewPostText = ""
+    rerenderReactDom(state)
+}
+export const UpdateNewPostChange = (NewText: string) => {
+
+
+    state.ProfilePage.NewPostText = NewText
     rerenderReactDom(state)
 }
