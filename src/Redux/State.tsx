@@ -1,4 +1,5 @@
 import React from "react";
+import {rerenderReactDom} from "../Render";
 
 
 export type PostsMassiveType = {
@@ -90,4 +91,5 @@ export const AddPost = (PostMessage: string) => {
     }
 
     state.ProfilePage.PostsMassive.push(NewPost)
+    rerenderReactDom(state)
 }

@@ -20,7 +20,6 @@ export const MyPosts = (props:MyPostsStateType) => {
     const ReactCreateRef = React.createRef<HTMLTextAreaElement>()
     const AddPost = ()=> {
         if (ReactCreateRef.current) {props.AddPost(ReactCreateRef.current.value)}
-
     }
     return (
 
