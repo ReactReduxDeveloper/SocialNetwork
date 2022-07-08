@@ -1,15 +1,21 @@
 import c from "./MyPosts.module.css";
 import React, {ChangeEvent} from "react";
 import {Post} from "./Post/Post";
-import {FinishStateType, PostsMassiveType, ProfilePageType} from "../../../Redux/State";
+import {
+    ActionTypes, AddPostActionCreator,
+    AddPostActionType,
+    FinishStateType,
+    PostsMassiveType,
+    ProfilePageType, UpdateNewPostChangeActionCreator,
+    UpdateNewPostChangeActionType
+} from "../../../Redux/State";
 import {ProfileStateType} from "../Profile";
 
 
 type MyPostsStateType = {
     state: Array<PostsMassiveType>
-    AddPost: (PostMessage: string) => void
     NewPostText: string
-    UpdateNewPostChange: (NewText: string) => void
+    dispatch:(action: ActionTypes)=>void
 }
 export const MyPosts = (props: MyPostsStateType) => {
 
@@ -21,11 +27,11 @@ export const MyPosts = (props: MyPostsStateType) => {
     })
     const ReactCreateRef = React.createRef<HTMLTextAreaElement>()
     const AddPost = () => {
-        props.AddPost(props.NewPostText)
+        props.dispatch(AddPostActionCreator(props.NewPostText))
 
     }
     const OnChangePost = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.UpdateNewPostChange(e.currentTarget.value)
+        props.dispatch(UpdateNewPostChangeActionCreator(e.currentTarget.value))
     }
     return (
 

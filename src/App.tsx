@@ -5,13 +5,11 @@ import {Navbar} from "./components/Navbar/Navbar";
 import {Profile} from "./components/Profile/Profile";
 import {Dialogs} from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
-import {AppStateType, state, UpdateNewPostChange} from "./Redux/State";
+import {ActionTypes, AddPostActionType, AppStateType, StoreType, UpdateNewPostChangeActionType,} from "./Redux/State";
 
 type FinishStateType = {
     state: AppStateType
-    AddPost: (PostMessage: string) => void
-    UpdateNewPostChange: (NewText: string) => void
-
+    dispatch:(action: ActionTypes)=>void
 }
 
 function App(props: FinishStateType) {
@@ -24,8 +22,8 @@ function App(props: FinishStateType) {
                     <Switch>
                         <Route path='/dialogs' render={() => <Dialogs state={props.state.MessagePage}/>}/>
                         <Route path="/profile"
-                               render={() => <Profile Profilestate={props.state.ProfilePage} AddPost={props.AddPost}
-                                                      UpdateNewPostChange={props.UpdateNewPostChange}/>}/>
+                               render={() => <Profile Profilestate={props.state.ProfilePage}
+                                                      dispatch={props.dispatch}/>}/>
                     </Switch>
                 </div>
             </div>
