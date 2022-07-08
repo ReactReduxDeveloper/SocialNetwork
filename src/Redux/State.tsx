@@ -1,5 +1,10 @@
 import React from "react";
+import {ProfileReducer} from "./profile-reducer";
+import {DialogsReducer} from "./dialogs-reducer";
+import {SideBarReducer} from "./sidebar-reducer";
 
+export const Update_New_Message_body = "Update_New_Message_body"
+export const Send_Message = "Send_Message"
 export let store: StoreType = {
     _state: {
         ProfilePage: {
@@ -43,8 +48,10 @@ export let store: StoreType = {
                     id: 6
                 }
 
-            ]
+            ],
+            NewMessageBody: ""
         },
+
         Sidebar: {}
     },
     getState() {
@@ -58,19 +65,10 @@ export let store: StoreType = {
         this._CallSubscriber = observer
     },
     dispatch(action) {
-        if (action.type === "ADD-POST") {
-            let NewPost: PostsMassiveType = {
-                id: 5,
-                message: action.PostMessage,
-                likesCount: "0"
-            }
-            this._state.ProfilePage.PostsMassive.push(NewPost)
-            this._state.ProfilePage.NewPostText = ""
-            this._CallSubscriber(this._state)
-        } else if (action.type === "UPDATE-NEW-POST-CHANGE") {
-            this._state.ProfilePage.NewPostText = action.NewText
-            this._CallSubscriber(this._state)
-        }
+        this._state.ProfilePage =  ProfileReducer(this._state.ProfilePage, action)
+        this._state.MessagePage =  DialogsReducer(this._state.MessagePage, action)
+        this._state.Sidebar =  SideBarReducer(this._state.Sidebar, action)
+        this._CallSubscriber(this._state)
     }
 }
 
@@ -82,7 +80,15 @@ export type StoreType = {
     dispatch: (action: ActionTypes) => void
 
 }
-export type ActionTypes = AddPostActionType | UpdateNewPostChangeActionType
+export type ActionTypes = AddPostActionType | UpdateNewPostChangeActionType | UpdateNewMessageActionType | SendMessageActionType
+
+export const UpdateNewMessagebody = (body:string)=> {
+    return {
+        type:Update_New_Message_body,
+        body: body
+    } as const
+
+}
 export const AddPostActionCreator = (PostMessage: string) => {
     return {
         type: "ADD-POST",
@@ -97,6 +103,14 @@ export const UpdateNewPostChangeActionCreator = (NewText: string) => {
 
     } as const
 }
+export let SendMessageActionCreator = (body:string)=> {
+    return {
+        type:Send_Message,
+        body:body
+}
+}
+export type SendMessageActionType = ReturnType<typeof SendMessageActionCreator>
+export type UpdateNewMessageActionType = ReturnType<typeof UpdateNewMessagebody>
 export type AddPostActionType = ReturnType<typeof AddPostActionCreator>
 export type UpdateNewPostChangeActionType = ReturnType<typeof UpdateNewPostChangeActionCreator>
 
@@ -117,16 +131,20 @@ export type DialogMassiveType = {
 export type ProfilePageType = {
     PostsMassive: Array<PostsMassiveType>
     NewPostText: string
+
+
 }
 export type MessagePageType = {
     MessageMassive: Array<MessageMassiveType>
     DialogMassive: Array<DialogMassiveType>
+    NewMessageBody: string
 }
 export type sidebar = {}
 export type AppStateType = {
     ProfilePage: ProfilePageType
     MessagePage: MessagePageType
     Sidebar: sidebar
+
 
 }
 export type FinishStateType = {

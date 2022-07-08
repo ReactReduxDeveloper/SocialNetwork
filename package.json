@@ -16,6 +16,7 @@
     "react-router-app": "^0.1.6",
     "react-router-dom": "5.3.3",
     "react-scripts": "3.4.1",
+    "redux": "^4.2.0",
     "typescript": "~3.7.2"
   },
   "scripts": {

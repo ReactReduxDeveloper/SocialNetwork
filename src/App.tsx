@@ -20,7 +20,7 @@ function App(props: FinishStateType) {
                 <Navbar/>
                 <div className='app-wrapper-content'>
                     <Switch>
-                        <Route path='/dialogs' render={() => <Dialogs state={props.state.MessagePage}/>}/>
+                        <Route path='/dialogs' render={() => <Dialogs state={props.state.MessagePage} dispatch={props.dispatch}/>}/>
                         <Route path="/profile"
                                render={() => <Profile Profilestate={props.state.ProfilePage}
                                                       dispatch={props.dispatch}/>}/>
