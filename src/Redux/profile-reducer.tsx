@@ -1,6 +1,15 @@
 import {PostsMassiveType} from "./State";
 
-export const ProfileReducer = (state, action) => {
+let InitialState =  {
+    PostsMassive: [
+        {id: 1, message: "Hi", likesCount: "5"},
+        {id: 2, message: "Hello", likesCount: "10"},
+        {id: 3, message: "Privet", likesCount: "2"},
+        {id: 4, message: "Hola", likesCount: "4"},
+    ],
+        NewPostText: "It-Kam"
+}
+export const ProfileReducer = (state = InitialState, action) => {
     switch (action.type) {
         case "ADD-POST":
             let NewPost: PostsMassiveType = {

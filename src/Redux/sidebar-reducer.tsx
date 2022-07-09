@@ -1,3 +1,4 @@
-export const SideBarReducer = ()=> {
+let InitialState = {}
+export const SideBarReducer = (state = InitialState, action)=> {
 
 }

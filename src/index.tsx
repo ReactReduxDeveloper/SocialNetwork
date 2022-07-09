@@ -18,7 +18,8 @@ export let rerenderReactDom = () => {
 
 
 rerenderReactDom()
-store.subscribe(rerenderReactDom)
+store.subscribe(()=>{
+    rerenderReactDom()})
 
 
 serviceWorker.unregister();
